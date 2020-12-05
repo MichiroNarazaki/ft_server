@@ -1,0 +1,24 @@
+user www-data;
+
+events
+{
+	worker_connections 768;
+}
+
+http
+{
+	##
+	# Basic Settings
+	##
+	autoindex	{{ var "AUTOINDEX" | default "on"}};
+	include /etc/nginx/mime.types;
+	##
+	# Logging Settings
+	##
+	access_log /var/log/nginx/access.log;
+	error_log /var/log/nginx/error.log;
+	##
+	# Virtual Host Configs
+	##
+	include /etc/nginx/conf.d/*.conf;
+}
